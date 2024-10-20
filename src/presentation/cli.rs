@@ -1,10 +1,10 @@
 // src/presentation/cli.rs
 
 use crate::application::services::workflow_service::WorkflowService;
-use crate::domain::entities::step::{Step, StepType};
-use crate::domain::entities::form::Form;
 use crate::domain::entities::checklist::Checklist;
+use crate::domain::entities::form::Form;
 use crate::domain::entities::routine::Routine;
+use crate::domain::entities::step::{Step, StepType};
 use std::io::{self, Write};
 
 pub struct CliPresentation {
@@ -43,7 +43,11 @@ impl CliPresentation {
         println!("\nCreating a new workflow");
         let name = self.prompt("Enter workflow name: ");
         let description = self.prompt("Enter workflow description (optional): ");
-        let description = if description.is_empty() { None } else { Some(description) };
+        let description = if description.is_empty() {
+            None
+        } else {
+            Some(description)
+        };
 
         let mut steps = Vec::new();
         loop {
@@ -56,7 +60,10 @@ impl CliPresentation {
             }
         }
 
-        match self.workflow_service.create_workflow(name, description, steps) {
+        match self
+            .workflow_service
+            .create_workflow(name, description, steps)
+        {
             Ok(workflow) => println!("Workflow '{}' created successfully!", workflow.name),
             Err(e) => println!("Error creating workflow: {}", e),
         }
@@ -100,7 +107,8 @@ impl CliPresentation {
         Step {
             step_type: StepType::Routine(Routine {
                 name,
-                action: String::new(), // For simplicity, we're not defining the action in this example
+                workflow: None,
+                action: None, // For simplicity, we're not defining the action in this example
             }),
             dependencies: Vec::new(),
         }
@@ -122,13 +130,17 @@ impl CliPresentation {
         print!("{}", message);
         io::stdout().flush().unwrap();
         let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line");
         input.trim().to_string()
     }
 
     fn read_number(&self) -> u32 {
         let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line");
         input.trim().parse().unwrap_or(0)
     }
 }

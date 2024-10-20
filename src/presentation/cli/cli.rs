@@ -6,8 +6,8 @@ mod frameworks;
 mod interfaces;
 mod presentation;
 
-use crate::frameworks::repositories::workflow_sqlite_repo::SqliteWorkflowRepository;
 use crate::application::services::workflow_service::WorkflowService;
+use crate::frameworks::repositories::workflow_sqlite_repo::SqliteWorkflowRepository;
 use crate::presentation::cli::CliPresentation;
 
 fn main() {
