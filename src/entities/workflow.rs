@@ -1,12 +1,12 @@
 pub struct WorkflowStep {
-    id: i64,
-    seq: i32,
+    pub id: i64,
+    pub seq: i32,
 }
 
 pub struct Workflow {
-    id: i64,
-    name: String,
-    steps: Vec<WorkflowStep>,
-    date_created: String,
-    date_updated: String,
+    pub id: i64,
+    pub name: String,
+    pub steps: Vec<WorkflowStep>,
+    pub date_created: String,
+    pub date_updated: String,
 }
