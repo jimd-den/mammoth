@@ -1,7 +1,7 @@
 use crate::frameworks_drivers::controllers::workflow_builder::WorkflowBuilder;
 
 pub struct CreateWorkflowPresenter {
-    controller: WorkflowBuilder,
+    pub controller: WorkflowBuilder,
 }
 
 pub struct CreateWorkflowViewModel {

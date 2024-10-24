@@ -4,7 +4,7 @@ use crate::{
 };
 
 pub struct CreateNewWorkFlow {
-    repo: dyn IfWorkflowRepository,
+    pub repo: Box<dyn IfWorkflowRepository>,
 }
 
 impl CreateNewWorkFlow {

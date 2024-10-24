@@ -3,7 +3,7 @@ use crate::{
 };
 
 pub struct WorkflowBuilder {
-    create_workflow_uc: CreateNewWorkFlow,
+    pub create_workflow_uc: CreateNewWorkFlow,
 }
 
 impl WorkflowBuilder {
